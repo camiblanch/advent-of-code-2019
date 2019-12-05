@@ -40,7 +40,25 @@ function multiply({x, y, answerIndex}) {
 	opcodes[answerIndex] = x * y;
 }
 
-let opcodes = readFile("input.txt");
-operate(0);
-console.log(opcodes[0]);
+// Part 1
+// let opcodes = readFile("input.txt");
+// operate(0);
+// console.log(opcodes[0]);
 
+// Part 2
+let opcodes = [];
+for (let noun = 0; noun <= 99; noun++) {
+	for (let verb = 0; verb <= 99; verb++) {
+		opcodes = readFile("input.txt");
+		opcodes[1] = noun;
+		opcodes[2] = verb;
+
+		operate(0);
+		if (opcodes[0] === 19690720) {
+			console.log("noun: " + noun);
+			console.log("verb: " + verb);
+			console.log(100 * noun + verb);
+			break;
+		}
+	}
+}
