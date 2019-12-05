@@ -6,16 +6,18 @@ class Module {
 	}
 
 	calcFuelNeeded() {
-		return Math.floor(this.mass / 3) - 2;
+		const fuel = Math.floor(this.mass / 3) - 2;
+		return fuel < 0 ? 0 : fuel;
 	}
 }
 
 const moduleMasses = readFile("input.txt");
-let totalFuelNeeded = 0;
+let partOneFuel = 0;
 
 moduleMasses.forEach(mass => {
 	const module = new Module(mass);
-	totalFuelNeeded += module.calcFuelNeeded();
+	partOneFuel += module.calcFuelNeeded();
 });
 
-console.log(totalFuelNeeded);
+console.log("Part one: " + partOneFuel);
+
