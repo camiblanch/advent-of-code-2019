@@ -1,4 +1,4 @@
-const readFile = require("../readFile");
+const readFile = require("./readFile");
 
 function calcFuelNeeded(mass) {
 	const fuel = Math.floor(mass / 3) - 2;
