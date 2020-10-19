@@ -1,6 +1,10 @@
 const readFile = file => {
 	const fs = require("fs");
-	return fs.readFileSync(file).toString().split(",");
+	const lines = fs.readFileSync(file).toString().split("\n");
+
+	return lines.map(line => {
+		return line.split(",");
+	});
 };
 
 const main = () => {
