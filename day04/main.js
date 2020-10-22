@@ -5,12 +5,21 @@ const readFile = file => {
 };
 
 const containsAtLeastOneDigitPair = (password) => {
-	for (let i = 0; i < password.length; i++) {
+	for (let i = 0; i < password.length - 1; i++) {
 		if (password.charAt(i) === password.charAt(i + 1)) {
 			return true;
 		}
 	}
 	return false;
+};
+
+const digitsNeverDecrease = (password) => {
+	for (let i = 0; i < password.length - 1; i++) {
+		if (parseInt(password.charAt(i)) > parseInt(password.charAt(i + 1))) {
+			return false;
+		}
+	}
+	return true;
 };
 
 const passesFacts = (number) => {
@@ -21,6 +30,10 @@ const passesFacts = (number) => {
 	}
 
 	if (!containsAtLeastOneDigitPair(password)) {
+		return false;
+	}
+
+	if (!digitsNeverDecrease(password)) {
 		return false;
 	}
 
