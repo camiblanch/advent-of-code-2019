@@ -4,8 +4,10 @@ const readFile = file => {
 	return data.map(d => parseInt(d));
 };
 
-const passesFacts = (password) => {
-	if (password.toString().length !== 6) {
+const passesFacts = (number) => {
+	const password = number.toString();
+
+	if (password.length !== 6) {
 		return false;
 	}
 	return true;
