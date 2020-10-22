@@ -22,7 +22,7 @@ const digitsNeverDecrease = (password) => {
 	return true;
 };
 
-const passesFacts = (number) => {
+const passesPartOneFacts = (number) => {
 	const password = number.toString();
 
 	if (password.length !== 6) {
@@ -40,18 +40,31 @@ const passesFacts = (number) => {
 	return true;
 };
 
-const main = () => {
+const partOneMain = () => {
 	const range = readFile("input.txt");
 	const matches = [];
 
 	for (let i = range[0]; i <= range[1]; i++) {
-		if (passesFacts(i)) {
+		if (passesPartOneFacts(i)) {
 			matches.push(i);
 		}
 	}
 
-	console.log(matches);
 	console.log("Num matches: ", matches.length);
 };
 
-main();
+const partTwoMain = () => {
+	const range = readFile("input.txt");
+	const matches = [];
+
+	for (let i = range[0]; i <= range[1]; i++) {
+		if (passesPartOneFacts(i)) {
+			matches.push(i);
+		}
+	}
+
+	console.log("Num matches: ", matches.length);
+};
+
+// partOneMain();
+partTwoMain();
