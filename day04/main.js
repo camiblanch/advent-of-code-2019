@@ -1,10 +1,11 @@
 const readFile = file => {
 	const fs = require("fs");
-	return fs.readFileSync(file).toString().split("-");
+	const data = fs.readFileSync(file).toString().split("-");
+	return data.map(d => parseInt(d));
 };
 
 const passesFacts = (password) => {
-	if (password.length !== 6) {
+	if (password.toString().length !== 6) {
 		return false;
 	}
 	return true;
