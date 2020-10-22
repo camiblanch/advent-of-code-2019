@@ -4,12 +4,26 @@ const readFile = file => {
 	return data.map(d => parseInt(d));
 };
 
+const containsAtLeastOneDigitPair = (password) => {
+	for (let i = 0; i < password.length; i++) {
+		if (password.charAt(i) === password.charAt(i + 1)) {
+			return true;
+		}
+	}
+	return false;
+};
+
 const passesFacts = (number) => {
 	const password = number.toString();
 
 	if (password.length !== 6) {
 		return false;
 	}
+
+	if (!containsAtLeastOneDigitPair(password)) {
+		return false;
+	}
+
 	return true;
 };
 
