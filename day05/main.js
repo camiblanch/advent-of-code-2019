@@ -3,7 +3,7 @@ function readFile(file) {
 	return fs.readFileSync(file).toString().split(",").map(Number);
 }
 
-const input = 1;
+const input = 5;
 
 function makeInstructionFullLength(opcodeIndex) {
 	let instruction = opcodes[opcodeIndex].toString();
@@ -42,6 +42,50 @@ function operate(opcodeIndex) {
 			const output = opcodes[getOneParam(opcodeIndex, paramModes[0])];
 			console.log("Output: ", output);
 			opcodeIndex += 2;
+			operate(opcodeIndex);
+			break;
+		case "05":
+			const opcode5param1 = opcodes[getOneParam(opcodeIndex, paramModes[0])];
+			const opcode5param2 = opcodes[getOneParam(opcodeIndex + 1, paramModes[1])];
+			if (opcode5param1 !== 0) {
+				opcodeIndex = opcode5param2;
+			} else {
+				opcodeIndex += 3;
+			}
+			operate(opcodeIndex);
+			break;
+		case "06":
+			const opcode6param1 = opcodes[getOneParam(opcodeIndex, paramModes[0])];
+			const opcode6param2 = opcodes[getOneParam(opcodeIndex + 1, paramModes[1])];
+			if (opcode6param1 === 0) {
+				opcodeIndex = opcode6param2;
+			} else {
+				opcodeIndex += 3;
+			}
+			operate(opcodeIndex);
+			break;
+		case "07":
+			const opcode7param1 = opcodes[getOneParam(opcodeIndex, paramModes[0])];
+			const opcode7param2 = opcodes[getOneParam(opcodeIndex + 1, paramModes[1])];
+			const opcode7param3 = getOneParam(opcodeIndex + 2, paramModes[2]);
+			if (opcode7param1 < opcode7param2) {
+				opcodes[opcode7param3] = 1;
+			} else {
+				opcodes[opcode7param3] = 0;
+			}
+			opcodeIndex += 4;
+			operate(opcodeIndex);
+			break;
+		case "08":
+			const opcode8param1 = opcodes[getOneParam(opcodeIndex, paramModes[0])];
+			const opcode8param2 = opcodes[getOneParam(opcodeIndex + 1, paramModes[1])];
+			const opcode8param3 = getOneParam(opcodeIndex + 2, paramModes[2]);
+			if (opcode8param1 === opcode8param2) {
+				opcodes[opcode8param3] = 1;
+			} else {
+				opcodes[opcode8param3] = 0;
+			}
+			opcodeIndex += 4;
 			operate(opcodeIndex);
 			break;
 		case "99":
